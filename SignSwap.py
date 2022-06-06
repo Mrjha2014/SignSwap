@@ -68,7 +68,7 @@ while True:
                    1, (0,0,255), 2, cv2.LINE_AA)
 
     # Show the final output
-    cv2.imshow("Output", frame) 
+    cv2.imshow("SignSwap", frame) 
 
     if cv2.waitKey(1) == ord('q'):
         break
