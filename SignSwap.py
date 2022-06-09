@@ -1,7 +1,6 @@
-# TechVidvan hand Gesture Recognizer
 
 # import necessary packages
-
+import pyttsx3
 import cv2
 import numpy as np
 import mediapipe as mp
@@ -40,7 +39,7 @@ while True:
     result = hands.process(framergb)
 
     # print(result)
-    
+
     className = ''
 
     # post process the result
@@ -63,12 +62,19 @@ while True:
             classID = np.argmax(prediction)
             className = classNames[classID]
 
+# text to speech
+    engine = pyttsx3.init()
+
+    engine.say(className)
+
+    engine.runAndWait()
+
     # show the prediction on the frame
-    cv2.putText(frame, className, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 
-                   1, (0,0,255), 2, cv2.LINE_AA)
+    cv2.putText(frame, className, (10, 50), cv2.FONT_HERSHEY_SIMPLEX,
+                1, (0, 0, 255), 2, cv2.LINE_AA)
 
     # Show the final output
-    cv2.imshow("SignSwap", frame) 
+    cv2.imshow("SignSwap", frame)
 
     if cv2.waitKey(1) == ord('q'):
         break
